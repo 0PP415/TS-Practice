@@ -20,19 +20,28 @@ export function simpleSort(
   // 구조분해할당을 사용하자
   const sortedArr: number[] = [...arr];
 
+  // 리스트 내부 원소에 arr이 있다면
+  // 함수를 종료시켜서 내부 원소에 undefined 이 없도록 보장하자
+  // 물론 O(n) 만큼의 시간이 더 걸리겠지만 안정성과 시간 중 저울질을 해보아야 할 문제 아닐까?
+  for (const element of sortedArr) {
+    if (element === undefined) return arr;
+  }
+
   // 두 수를 입력받아 order을 기준으로
   // 차이를 판별하여 boolean 값을 반환
   // 등호를 포함 안하니 안정 정렬 이겠지?
   const compare = (a: number, b: number): boolean => {
-    if (order === "asc") return a - b > 0;
-    else return a - b < 0;
+    if (order === "asc") return a > b;
+    else return a < b;
   };
 
+  // 위에서 배열 내에는 undefined 이 없음을 보장 했으므로
+  // ! 를 사용하여 확실히 number 라는 것을 알려주자
   for (let i: number = 0; i < sortedArr.length - 1; i++) {
     for (let j: number = 0; j < sortedArr.length - 1 - i; j++) {
-      if (compare(sortedArr[j], sortedArr[j + 1])) {
-        const tmp: number = sortedArr[j];
-        sortedArr[j] = sortedArr[j + 1];
+      if (compare(sortedArr[j]!, sortedArr[j + 1]!)) {
+        const tmp: number = sortedArr[j]!;
+        sortedArr[j] = sortedArr[j + 1]!;
         sortedArr[j + 1] = tmp;
       }
     }
