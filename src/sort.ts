@@ -22,7 +22,8 @@ export function simpleSort(
 
   // 리스트 내부 원소에 arr이 있다면
   // 함수를 종료시켜서 내부 원소에 undefined 이 없도록 보장하자
-  // 물론 O(n) 만큼의 시간이 더 걸리겠지만 안정성과 시간 중 저울질을 해보아야 할 문제 아닐까?
+  // 물론 O(n) 만큼의 시간이 추가로 더 걸리겠지만
+  // 안정성과 시간 중 저울질을 해보아야 할 문제 아닐까?
   for (const element of sortedArr) {
     if (element === undefined) return arr;
   }
